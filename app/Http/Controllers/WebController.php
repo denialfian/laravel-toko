@@ -37,124 +37,44 @@ class WebController extends Controller
             [
                 'name' => 'DASHBOARD',
                 'url' => url('admin/dashboard'),
-                'icon' => 'mdi mdi-av-timer',
-                'active' => $route == 'dashboard' ? 'active' : 'active',
+                'icon' => 'fas fa-tachometer-alt',
+                'active_class' => $route == 'dashboard' ? 'active' : '',
                 'isSubMenu' => false,
-                'submenu_selection_class' => '',
                 'submenu_open_class' => '',
-                'submenu_arrow_class' => '',
                 'submenu' => []
             ],
             [
                 'name' => 'MASTER',
-                'url' => 'javascript:void(0)',
-                'icon' => 'mdi mdi-apps',
-                'active' => $active_master,
-                'submenu_selection_class' => ($active_master != '') ? 'selected' : '',
-                'submenu_open_class' => ($active_master != '') ? 'in' : '',
-                'submenu_arrow_class' => 'has-arrow',
+                'url' => '#',
+                'icon' => 'fas fa-tachometer-alt',
+                'active_class' => $active_master,
+                'submenu_open_class' => ($active_master != '') ? 'menu-open' : '',
                 'isSubMenu' => true,
                 'submenu' => [
                     [
                         'name' => 'COMPANY',
                         'url' => url('admin/companies'),
-                        'icon' => 'mdi mdi-adjust',
-                        'active' => $route == 'companies' ? 'active' : 'nav-link',
-                        'isSubMenu' => false,
-                    ],
-                    [
-                        'name' => 'CUSTOMER',
-                        'url' => url('admin/customers'),
-                        'icon' => 'mdi mdi-adjust',
-                        'active' => $route == 'customers' ? 'active' : 'nav-link',
-                        'isSubMenu' => false,
-                    ],
-                    [
-                        'name' => 'BRAND',
-                        'url' => url('admin/brands'),
-                        'icon' => 'mdi mdi-adjust',
-                        'active' => $route == 'brands' ? 'active' : 'nav-link',
-                        'isSubMenu' => false,
-                    ],
-                    [
-                        'name' => 'BRAND TYPE',
-                        'url' => url('admin/brand_types'),
-                        'icon' => 'mdi mdi-adjust',
-                        'active' => $route == 'brand_types' ? 'active' : 'nav-link',
-                        'isSubMenu' => false,
-                    ],
-                    [
-                        'name' => 'BANK',
-                        'url' => url('admin/banks'),
-                        'icon' => 'mdi mdi-adjust',
-                        'active' => $route == 'banks' ? 'active' : 'nav-link',
-                        'isSubMenu' => false,
-                    ],
-                    [
-                        'name' => 'PAYMENT',
-                        'url' => url('admin/payments'),
-                        'icon' => 'mdi mdi-adjust',
-                        'active' => $route == 'payments' ? 'active' : 'nav-link',
-                        'isSubMenu' => false,
-                    ],
-                    [
-                        'name' => 'SERIVCE',
-                        'url' => url('admin/services'),
-                        'icon' => 'mdi mdi-adjust',
-                        'active' => $route == 'services' ? 'active' : 'nav-link',
-                        'isSubMenu' => false,
-                    ],
-                    [
-                        'name' => 'SPAREPART',
-                        'url' => url('admin/spareparts'),
-                        'icon' => 'mdi mdi-adjust',
-                        'active' => $route == 'spareparts' ? 'active' : 'nav-link',
-                        'isSubMenu' => false,
-                    ],
-                ]
-            ],
-            [
-                'name' => 'TRANSACTION',
-                'url' => 'javascript:void(0)',
-                'icon' => 'mdi mdi-apps',
-                'active' => $active_trx,
-                'submenu_selection_class' => ($active_trx != '') ? 'selected' : '',
-                'submenu_open_class' => ($active_trx != '') ? 'in' : '',
-                'submenu_arrow_class' => 'has-arrow',
-                'isSubMenu' => true,
-                'submenu' => [
-                    [
-                        'name' => 'QUOTATION',
-                        'url' => url('admin/quotations'),
-                        'icon' => 'mdi mdi-adjust',
-                        'active' => $route == 'quotations' ? 'active' : 'nav-link',
-                        'isSubMenu' => false,
+                        'active_class' => $route == 'companies' ? 'active' : '',
                     ],
                 ]
             ],
             [
                 'name' => 'UTILITY SYSTEM',
-                'url' => 'javascript:void(0)',
-                'icon' => 'mdi mdi-apps',
-                'active' => $active_UTILITY,
-                'submenu_selection_class' => ($active_UTILITY != '') ? 'selected' : '',
-                'submenu_open_class' => ($active_UTILITY != '') ? 'in' : '',
-                'submenu_arrow_class' => 'has-arrow',
+                'url' => '#',
+                'icon' => 'fas fa-tachometer-alt',
+                'active_class' => $active_UTILITY,
+                'submenu_open_class' => ($active_UTILITY != '') ? 'menu-open' : '',
                 'isSubMenu' => true,
                 'submenu' => [
                     [
                         'name' => 'USER',
                         'url' => url('admin/users'),
-                        'icon' => 'mdi mdi-adjust',
-                        'active' => $route == 'users' ? 'active' : 'nav-link',
-                        'isSubMenu' => false,
+                        'active_class' => $route == 'users' ? 'active' : '',
                     ],
                     [
                         'name' => 'ROLE',
                         'url' => url('admin/roles'),
-                        'icon' => 'mdi mdi-adjust',
-                        'active' => $route == 'roles' ? 'active' : 'nav-link',
-                        'isSubMenu' => false,
+                        'active_class' => $route == 'roles' ? 'active' : '',
                     ],
                 ]
             ],
@@ -165,9 +85,9 @@ class WebController extends Controller
     public function getCommonViewData()
     {
         return [
-            'title' => 'astect',
-            'card_header_color_class' => 'bg-info',
-            'modal_header_color_class' => 'modal-colored-header bg-info text-white',
+            'title' => 'myApp',
+            'title_header' => '',
+            'app_name' => 'myApp',
             'master_template' => 'admin.template.master',
             'sidebar_menu' => $this->getSidebarMenu(),
         ];
@@ -176,9 +96,7 @@ class WebController extends Controller
     public function loadView($path, $data = [])
     {
         $this->setViewData($data);
-        $this->setViewData([
-            'auth_user' =>  auth()->user()
-        ]);
+
         return view($path, $this->getViewData());
     }
 }
