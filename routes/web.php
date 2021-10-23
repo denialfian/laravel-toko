@@ -4,6 +4,8 @@ use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\UserController;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+require base_path('routes/asset.php');
+
 Route::get('/', function () {
     return view('authentication.login');
-});
+})->name('login');
 
 Route::post('auth/login', [AuthController::class, 'login']);
 

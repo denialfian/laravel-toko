@@ -1,52 +1,80 @@
-<div class="sidebar">
-    <!-- Sidebar user (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-            <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
+<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
+    <!--begin::Brand-->
+    <div class="brand flex-column-auto" id="kt_brand">
+        <!--begin::Logo-->
+        <a href="../../index.html" class="brand-logo">
+            <img alt="Logo" src="{{ asset('backend/assets/media/logos/logo-light.png') }}" />
+        </a>
+        <!--end::Logo-->
+        <!--begin::Toggle-->
+        <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
+            <span class="svg-icon svg-icon svg-icon-xl">
+                <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Navigation/Angle-double-left.svg-->
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <path d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z" fill="#000000" fill-rule="nonzero" transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999)" />
+                        <path d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999)" />
+                    </g>
+                </svg>
+                <!--end::Svg Icon-->
+            </span>
+        </button>
+        <!--end::Toolbar-->
     </div>
+    <!--end::Brand-->
+    <!--begin::Aside Menu-->
+    <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
+        <!--begin::Menu Container-->
+        <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
+            <!--begin::Menu Nav-->
+            <ul class="menu-nav">
+                @foreach($sidebar_menu as $menu)
+                    @if($menu['isSubMenu'])
+                    <li class="menu-item menu-item-submenu {{ ($menu['active_class']) ? 'menu-item-open menu-item-here' : '' }}" 
+                        aria-haspopup="true" 
+                        data-menu-toggle="hover">
+                    @endif
 
-    <!-- SidebarSearch Form -->
-    <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-                <button class="btn btn-sidebar">
-                    <i class="fas fa-search fa-fw"></i>
-                </button>
-            </div>
+                    @if(!$menu['isSubMenu'])
+                        <li class="menu-item {{ ($menu['active_class']) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                    @endif
+
+                    <a href="{{ $menu['url'] }}" class="menu-link {{ ($menu['isSubMenu']) ? 'menu-toggle' : '' }}">
+                        <span class="svg-icon menu-icon">
+                            <i class="{{ $menu['icon'] }}"></i>
+                        </span>
+                        <span class="menu-text">{{ $menu['name'] }}</span>
+                        @if($menu['isSubMenu'])<i class="menu-arrow"></i></i>@endif
+                    </a>
+                    @if($menu['isSubMenu'])
+                    <div class="menu-submenu">
+                        <i class="menu-arrow"></i>
+                        <ul class="menu-subnav">
+                            <li class="menu-item menu-item-parent" aria-haspopup="true">
+                                <span class="menu-link">
+                                    <span class="menu-text">{{ $menu['name'] }}</span>
+                                </span>
+                            </li>
+                            @foreach($menu['submenu'] as $submenu)
+                            <li class="menu-item {{ ($submenu['active_class']) ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                <a href="{{ $submenu['url'] }}" class="menu-link">
+                                    <i class="menu-bullet menu-bullet-dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">{{ $submenu['name'] }}</span>
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                </li>
+                @endforeach
+            </ul>
+            <!--end::Menu Nav-->
         </div>
+        <!--end::Menu Container-->
     </div>
-
-    <!-- Sidebar Menu -->
-    <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-            @foreach($sidebar_menu as $menu)
-            <li class="nav-item {{ $menu['active_class'] }}">
-                <a href="{{ $menu['url'] }}" class="nav-link {{ $menu['submenu_open_class'] }}">
-                    <i class="nav-icon {{ $menu['icon'] }}"></i>
-                    <p>{{ $menu['name'] }}  @if($menu['isSubMenu'])<i class="right fas fa-angle-left"></i>@endif</p>
-                </a>
-                @if($menu['isSubMenu'])
-                <ul class="nav nav-treeview">
-                    @foreach($menu['submenu'] as $submenu)
-                    <li class="nav-item">
-                        <a href="{{ $submenu['url'] }}" class="nav-link {{ $submenu['active_class'] }}">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>{{ $submenu['name'] }}</p>
-                        </a>
-                    </li>
-                    @endforeach
-                </ul>
-                @endif
-            </li>
-            @endforeach
-        </ul>
-    </nav>
-    <!-- /.sidebar-menu -->
+    <!--end::Aside Menu-->
 </div>
