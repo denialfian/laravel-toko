@@ -53,6 +53,28 @@ Route::middleware('asset_cache')->group(function () {
         return $response;
     });
 
+    Route::get('widgets-bundle-js', function () {
+        $path = public_path('backend/assets/js/pages/widgetsf552.js');
+        if (!File::exists($path)) {
+            abort(404);
+        }
+
+        $response = Response::make(File::get($path), 200);
+        $response->header("Content-Type", 'text/javascript');
+        return $response;
+    });
+
+    Route::get('admin-lib-bundle-js', function () {
+        $path = public_path('js/admin_library_bundle.js');
+        if (!File::exists($path)) {
+            abort(404);
+        }
+
+        $response = Response::make(File::get($path), 200);
+        $response->header("Content-Type", 'text/javascript');
+        return $response;
+    });
+
     Route::get('plugins-bundle-css', function () {
         $path = public_path('backend/assets/plugins/global/plugins.bundlef552.css');
         if (!File::exists($path)) {
@@ -107,4 +129,16 @@ Route::middleware('asset_cache')->group(function () {
         $response->header("Content-Type", 'text/css');
         return $response;
     });
+
+    Route::get('admin-lib-bundle-css', function () {
+        $path = public_path('css/admin_library_bundle.css');
+        if (!File::exists($path)) {
+            abort(404);
+        }
+
+        $response = Response::make(File::get($path), 200);
+        $response->header("Content-Type", 'text/css');
+        return $response;
+    });
+    
 });

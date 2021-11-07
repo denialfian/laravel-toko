@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\WebController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\WebAdminController;
 
-class DashboardController extends WebController
+class WebAdminDashboardController extends WebAdminController
 {
     public function index()
     {

@@ -4,6 +4,10 @@ use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\Web\WebAdminDashboardController;
+use App\Http\Controllers\Web\WebAdminRoleController;
+use App\Http\Controllers\Web\WebAdminUserController;
+use App\Http\Controllers\Web\WebAuthController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
@@ -25,18 +29,18 @@ Route::get('/', function () {
     return view('authentication.login');
 })->name('login');
 
-Route::post('auth/login', [AuthController::class, 'login']);
+Route::post('auth/login', [WebAuthController::class, 'loginProsses']);
 
 Route::middleware('auth')->group(function () {
     Route::prefix('admin')->group(function () {
-        Route::get('dashboard', [DashboardController::class, 'index']);
+        Route::get('dashboard', [WebAdminDashboardController::class, 'index']);
 
-        Route::get('users', [UserController::class, 'index'])->middleware('permission:user.show');
+        Route::get('users', [WebAdminUserController::class, 'index'])->middleware('permission:user.read');
 
         Route::prefix('roles')->group(function () {
-            Route::get('/', [RoleController::class, 'index'])->middleware('permission:role.show');
-            Route::get('create', [RoleController::class, 'create'])->middleware('permission:role.create');
-            Route::get('/{id}/edit', [RoleController::class, 'edit'])->middleware('permission:role.edit');
+            Route::get('/', [WebAdminRoleController::class, 'index'])->middleware('permission:role.read');
+            Route::get('create', [WebAdminRoleController::class, 'create'])->middleware('permission:role.create');
+            Route::get('/{id}/edit', [WebAdminRoleController::class, 'edit'])->middleware('permission:role.update');
         });
     });
 });

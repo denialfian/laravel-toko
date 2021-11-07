@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WebInfo;
 
-class WebController extends Controller
+class WebAdminController extends Controller
 {
     public $viewData = [];
 

@@ -68,5 +68,7 @@
 <!--end::Global Theme Bundle-->
 
 <!--begin::Page Scripts(used by this page)-->
-<script src="{{ asset('backend/assets/js/pages/widgetsf552.js') }}"></script>
+<script src="{{ url('widgets-bundle-js') }}"></script>
 <!--end::Page Scripts-->
+
+@include('admin.template.js_core')

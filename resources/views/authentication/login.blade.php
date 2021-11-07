@@ -48,7 +48,7 @@
                     <!--begin::Login Sign in form-->
                     <div class="login-signin">
                         <div class="mb-20">
-                            <h3>Sign In To Admin</h3>
+                            <h3>Sign In To sasa</h3>
                             <p class="opacity-60 font-weight-bold">Enter your details to login to your account:</p>
                         </div>
                         <form class="form" id="kt_login_signin_form" action="{{ url('auth/login') }}" method="post">
@@ -68,7 +68,7 @@
                                 <a href="javascript:;" id="kt_login_forgot" class="text-white font-weight-bold">Forget Password ?</a>
                             </div>
                             <div class="form-group text-center mt-10">
-                                <button id="kt_login_signin_submit" class="btn btn-pill btn-outline-white font-weight-bold opacity-90 px-15 py-3">Sign In</button>
+                                <button type="submit" id="kt_login_signin_submit" class="btn btn-pill btn-outline-white font-weight-bold opacity-90 px-15 py-3">Sign In</button>
                             </div>
                         </form>
                         <div class="mt-10">

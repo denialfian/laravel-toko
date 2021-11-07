@@ -96,7 +96,7 @@ class Handler extends ExceptionHandler
                 $response['message'] = 'Unauthorized';
                 break;
             case 403:
-                $response['message'] = 'Forbidden';
+                $response['message'] = $error_message;
                 break;
             case 404:
                 $response['message'] = 'Not Found';

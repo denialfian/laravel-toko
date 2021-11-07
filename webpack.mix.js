@@ -12,6 +12,17 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .scripts([
+        'resources/js/pace.min.js',
+        'resources/js/toastr.min.js',
+        'resources/js/waitMe.min.js',
+        'resources/js/sweetalert2.all.min.js',
+        'resources/js/bootstrap-table.min.js',
+    ], 'public/js/admin_library_bundle.js')
+    .styles([
+        'resources/css/pace-theme-flash.min.css',
+        'resources/css/toastr.min.css',
+        'resources/css/waitMe.min.css',
+        'resources/css/sweetalert2.min.css',
+        'resources/css/bootstrap-table.min.css',
+    ], 'public/css/admin_library_bundle.css');
